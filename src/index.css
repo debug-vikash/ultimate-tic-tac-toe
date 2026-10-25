@@ -1,0 +1,108 @@
+/* Global Design System & Variables for Ultimate Tic-Tac-Toe */
+:root {
+  /* Dark Gaming Color Palette */
+  --bg-app: #080b12;
+  --bg-card: #0f1523;
+  --bg-card-hover: #141c2e;
+  --bg-board: #0d121e;
+  --bg-miniboard: #121826;
+  --bg-cell: #171f30;
+  --bg-cell-hover: #1f2a40;
+  --bg-cell-disabled: #0e1320;
+
+  --border-subtle: #1c263b;
+  --border-medium: #273550;
+  --border-bright: #3b4e74;
+
+  /* Player Signature Colors */
+  --player-x-color: #00e5ff;
+  --player-x-glow: rgba(0, 229, 255, 0.4);
+  --player-x-bg: rgba(0, 229, 255, 0.12);
+  --player-x-dim: rgba(0, 229, 255, 0.25);
+
+  --player-o-color: #ff3366;
+  --player-o-glow: rgba(255, 51, 102, 0.4);
+  --player-o-bg: rgba(255, 51, 102, 0.12);
+  --player-o-dim: rgba(255, 51, 102, 0.25);
+
+  /* Functional Accents */
+  --accent-gold: #f59e0b;
+  --accent-gold-glow: rgba(245, 158, 11, 0.35);
+  --accent-gold-bg: rgba(245, 158, 11, 0.12);
+
+  --accent-draw: #94a3b8;
+  --accent-draw-bg: rgba(148, 163, 184, 0.15);
+
+  /* Typography */
+  --font-main: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, monospace;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-disabled: #475569;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow-x: 0 0 20px rgba(0, 229, 255, 0.25);
+  --shadow-glow-o: 0 0 20px rgba(255, 51, 102, 0.25);
+  --shadow-glow-gold: 0 0 20px rgba(245, 158, 11, 0.25);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(30, 41, 69, 0.5) 0%, transparent 65%),
+    radial-gradient(circle at 10% 30%, rgba(0, 229, 255, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(255, 51, 102, 0.04) 0%, transparent 40%),
+    var(--bg-app);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--player-x-color);
+  outline-offset: 2px;
+}
