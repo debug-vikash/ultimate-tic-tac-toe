@@ -1,8 +1,34 @@
-export default function Header({ soundEnabled, onToggleSound, onOpenRules }) {
+export default function Header({
+  soundEnabled,
+  onToggleSound,
+  onOpenRules,
+  gameMode = 'local',
+  onSelectMode,
+}) {
   return (
     <header className="game-header">
       <div className="header-top-bar">
-        <div className="header-tag">LOCAL 2-PLAYER BATTLE</div>
+        <div className="mode-toggle-group" role="tablist" aria-label="Game Mode">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={gameMode === 'local'}
+            className={`mode-toggle-btn ${gameMode === 'local' ? 'active' : ''}`}
+            onClick={() => onSelectMode?.('local')}
+          >
+            <span>Local 2-Player</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={gameMode === 'online'}
+            className={`mode-toggle-btn ${gameMode === 'online' ? 'active' : ''}`}
+            onClick={() => onSelectMode?.('online')}
+          >
+            <span className="online-indicator-dot" aria-hidden="true" />
+            <span>Online Multiplayer</span>
+          </button>
+        </div>
         <div className="header-actions">
           <button
             type="button"

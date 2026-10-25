@@ -8,6 +8,8 @@ export default function PlayerPanel({
   overallWinner,
   playerNames = { X: 'Player 1', O: 'Player 2' },
   onUpdatePlayerName,
+  mySymbol = null,
+  isOnline = false,
 }) {
   const isXTurn = currentPlayer === 'X' && overallWinner === null;
   const isOTurn = currentPlayer === 'O' && overallWinner === null;
@@ -93,23 +95,26 @@ export default function PlayerPanel({
               <div className="player-name-display-wrap">
                 <span
                   className="player-name"
-                  title="Click to edit name"
-                  onClick={() => handleStartEdit('X')}
+                  title={!isOnline || mySymbol === 'X' ? 'Click to edit name' : undefined}
+                  onClick={() => (!isOnline || mySymbol === 'X') && handleStartEdit('X')}
                 >
                   {playerNames.X}
+                  {isOnline && mySymbol === 'X' && <span className="you-tag"> (You)</span>}
                 </span>
-                <button
-                  type="button"
-                  className="btn-edit-pencil"
-                  onClick={() => handleStartEdit('X')}
-                  title={`Edit ${playerNames.X} name`}
-                  aria-label={`Edit ${playerNames.X} name`}
-                >
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                  </svg>
-                </button>
+                {(!isOnline || mySymbol === 'X') && (
+                  <button
+                    type="button"
+                    className="btn-edit-pencil"
+                    onClick={() => handleStartEdit('X')}
+                    title={`Edit ${playerNames.X} name`}
+                    aria-label={`Edit ${playerNames.X} name`}
+                  >
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    </svg>
+                  </button>
+                )}
               </div>
             )}
             <span className="player-mark-badge x-badge">X</span>
@@ -132,7 +137,11 @@ export default function PlayerPanel({
             </span>
           </div>
         </div>
-        {isXTurn && <div className="turn-tag">YOUR TURN</div>}
+        {isXTurn && (
+          <div className="turn-tag">
+            {isOnline ? (mySymbol === 'X' ? 'YOUR TURN' : "OPPONENT'S TURN") : 'YOUR TURN'}
+          </div>
+        )}
         {overallWinner === 'X' && <div className="victory-tag">WINNER</div>}
       </div>
 
@@ -189,23 +198,26 @@ export default function PlayerPanel({
               <div className="player-name-display-wrap">
                 <span
                   className="player-name"
-                  title="Click to edit name"
-                  onClick={() => handleStartEdit('O')}
+                  title={!isOnline || mySymbol === 'O' ? 'Click to edit name' : undefined}
+                  onClick={() => (!isOnline || mySymbol === 'O') && handleStartEdit('O')}
                 >
                   {playerNames.O}
+                  {isOnline && mySymbol === 'O' && <span className="you-tag"> (You)</span>}
                 </span>
-                <button
-                  type="button"
-                  className="btn-edit-pencil"
-                  onClick={() => handleStartEdit('O')}
-                  title={`Edit ${playerNames.O} name`}
-                  aria-label={`Edit ${playerNames.O} name`}
-                >
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                  </svg>
-                </button>
+                {(!isOnline || mySymbol === 'O') && (
+                  <button
+                    type="button"
+                    className="btn-edit-pencil"
+                    onClick={() => handleStartEdit('O')}
+                    title={`Edit ${playerNames.O} name`}
+                    aria-label={`Edit ${playerNames.O} name`}
+                  >
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    </svg>
+                  </button>
+                )}
               </div>
             )}
             <span className="player-mark-badge o-badge">O</span>
@@ -228,7 +240,11 @@ export default function PlayerPanel({
             </span>
           </div>
         </div>
-        {isOTurn && <div className="turn-tag">YOUR TURN</div>}
+        {isOTurn && (
+          <div className="turn-tag">
+            {isOnline ? (mySymbol === 'O' ? 'YOUR TURN' : "OPPONENT'S TURN") : 'YOUR TURN'}
+          </div>
+        )}
         {overallWinner === 'O' && <div className="victory-tag">WINNER</div>}
       </div>
     </section>
